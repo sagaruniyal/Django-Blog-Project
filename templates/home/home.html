@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<div class="container my-3">
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to ICoder!</h1>
+  <p class="lead">You are awesome!</p>
+  <hr class="my-4">
+  <p>Whenever a software professional gets stuck somewhere in their code, no matter what programming language they are using,ICoder is the place where everyone can look for solutions. It is an open forum where you can post your queries or resolve queries posted by others.</p>
+  <a class="btn btn-primary btn-lg" href="/blog" role="button">Go to blog</a>
+</div>
+</div>
+<div class="container ">
+ <h2> Popular BlogPosts:</h2>
+{% for Post in allPosts %}
+<div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Article by {{Post.author}}({{Post.views}} views)</strong>
+          <h3 class="mb-0"><a class="text-dark" href="/blog/{{Post.slug}}">{{Post.title}}</a></h3>
+          <div class="mb-1 text-muted">{{Post.datetime}}</div>
+          <p class="card-text mb-auto"><div class="preview">{{Post.content|safe|truncatechars:500}}</div></p>
+          <div class="my-2"><a href="/blog/{{Post.slug}}" role="button" class="btn btn-primary">Continue reading</a></div>
+        </div>
+        
+      </div>
+  {% endfor %}
+        
+      </div>
+</div>
+{% endblock body %}
